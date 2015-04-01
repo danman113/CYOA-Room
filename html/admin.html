@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CYOA!</title>
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body { font: 13px Helvetica, Arial; }
+			p{text-indent: 0px;padding: 4px;font:15px;}
+			canvas{border:1px solid black;}
+			.chat{padding:4px;height:300px;overflow: scroll;}
+			.story{height:400px;overflow: scroll;}
+			.option{padding:4px;}
+			.image{max-height: 100px;max-width: 900px}
+			form{padding:4px;}
+		</style>
+		<script type="text/javascript">var admin=true;</script>
+		<script src="socket.io.js"></script>
+		<script src="cyoaClient.js"></script>
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<script src="jquery.min.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body onload="init()">
+		<div class="container">
+			<div class='row'>
+				<div class="chat" id='windowStory'>
+					<p>Story</p>
+				</div>
+				<form class="form-inline">
+					<br/>
+					<input type="text" placeholder='A' class="form-control" id='A'/>
+					<input type="text" placeholder='B' class="form-control" id='B'/>
+					<input type="text" placeholder='C' class="form-control" id='C'/>
+					<input type="text" placeholder='D' class="form-control" id='D'/>
+					<br/>
+					<br/>
+					<div class='input-group' style="width:100%">
+						<textarea placeholder='Write what happens next here!' class="form-control" id='story'></textarea>
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-primary" onclick='sendStory();return false;'>Submit</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class='row'>
+				<span id='results'></span>
+			</div>
+			<div class='row'>
+				<div class='col-md-4'>
+					<h3>Users</h3>
+					<div class="chat">
+						<ul id="users"></ul>
+					</div>
+				</div>
+				<div class='col-md-8'>
+					<h3>Chat</h3>
+					<div class="chat" id='windowChat'>
+						<ul id="chat"></ul>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<br/>
+				<form class="form-inline">
+					<div class='input-group' style="width:100%">
+						<input type="text" placeholder='chat...' class="form-control" id='message'/>
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-primary" onclick='sendMessage();return false;'>Submit</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

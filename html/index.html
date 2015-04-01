@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CYOA!</title>
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body { font: 13px Helvetica, Arial; }
+			p{text-indent: 0px;padding: 4px;font:15px;}
+			canvas{border:1px solid black;}
+			.chat{padding:4px;height:300px;overflow: scroll;}
+			.story{height:400px;overflow: scroll;}
+			.option{padding:4px;}
+			.image{max-height: 100px;max-width: 900px}
+			form{padding:4px;}
+		</style>
+		<script type="text/javascript">var admin=false;</script>
+		<script src="socket.io.js"></script>
+		<script src="cyoaClient.js"></script>
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<script src="jquery.min.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body onload="init()">
+		<div class="container">
+			<div class='container'>
+				<div class='row'>
+					<div class='col-md-3'>
+					<h3>Vote</h3>
+					<h5>Vote for what will happen next</h5>
+						<form class="form-inline">
+							<strong class='option'>A</strong><input name='option' type="radio" value='A' class="form-control" id='options'/><span id='0'></span><br/>
+							<strong class='option'>B</strong><input name='option' type="radio" value='B' class="form-control" id='options'/><span id='1'></span><br/>
+							<strong class='option'>C</strong><input name='option' type="radio" value='C' class="form-control" id='options'/><span id='2'></span><br/>
+							<strong class='option'>D</strong><input name='option' type="radio" value='D' class="form-control" id='options'/><span id='3'></span><br/>
+							<button type="submit" class="btn btn-primary" onclick='sendVotes();return false;'>Submit</button>
+						</form>
+					</div>
+					<div class='col-md-9'>
+						<div class="chat" id='windowStory'>
+							<p>Story</p>
+						</div>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md-4'>
+						<h3>Users</h3>
+						<div class="chat">
+							<ul id="users"></ul>
+						</div>
+					</div>
+					<div class='col-md-8'>
+						<h3>Chat</h3>
+						<div class="chat" id='windowChat'>
+							<ul id="chat"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<form class="form-inline">
+				<div class='input-group' style="width:100%">
+					<input type="text" placeholder='chat...' class="form-control" id='message'/>
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary" onclick='sendMessage();return false;'>Submit</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
